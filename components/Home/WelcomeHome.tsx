@@ -6,6 +6,7 @@ import Image from "next/image";
 import background from "@/public/Images/background.svg";
 import Link from "next/link";
 import { Button, buttonVariants } from "../ui/button";
+import TypewriterComponent from "typewriter-effect";
 
 const WelcomeHome = () => {
   const [showButtons, setShowButtons] = useState(false);
@@ -30,8 +31,17 @@ const WelcomeHome = () => {
               </span>
             </div>
           </h1>
-          <h1 className="text-green-700 font-bold my-4 text-3xl md:text-5xl">
-            <TypeWriter text="Join Our Tennis Club" delay={50} />
+          <h1 className="text-green-700 font-bold my-4 text-3xl md:text-4xl">
+            <TypewriterComponent
+              onInit={(typewriter) => {
+                typewriter
+                  .typeString("Join Our Tennis Club")
+                  .pauseFor(2000)
+                  .deleteAll()
+                  .start();
+              }}
+              options={{ loop: true }}
+            />
           </h1>
         </div>
         <div className="h-44 text-lg font-bold py-8 md:text-2xl text-gray-800">

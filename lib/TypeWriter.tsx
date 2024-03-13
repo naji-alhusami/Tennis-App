@@ -9,6 +9,7 @@ interface TypeWriterProps {
 const TypeWriter = ({ text, delay }: TypeWriterProps) => {
   const [currentText, setCurrentText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     if (currentIndex < text.length) {

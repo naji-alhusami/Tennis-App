@@ -6,16 +6,29 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
+  SheetClose,
   SheetTrigger,
+  SheetFooter,
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "../ui/button";
 import { cn } from "@/lib/utils";
+import { useRouter, usePathname } from "next/navigation";
 
 // interface Props {}
 
 const MobileSidebar = () => {
+  const router = useRouter();
+  const path = usePathname();
+
+  const links = [
+    { href: "/", text: "Home" },
+    { href: "/contact", text: "Contact" },
+  ];
+
+  const isActiveLink = (href: string) => path === href;
+
   return (
     <Sheet>
       <SheetTrigger>
@@ -29,9 +42,22 @@ const MobileSidebar = () => {
       <SheetContent side="left">
         <SheetHeader>
           {/* <SheetTitle>Are you absolutely sure?</SheetTitle> */}
-          <SheetDescription>
-            <div className="space-y-6 px-4 py-6">
-              <div className="flow-root">
+          <SheetClose asChild>
+            <div className="space-y-4 mx-8 my-6 flex flex-col">
+              {links.map((link, index) => (
+                <div
+                  key={index}
+                  className={`mx-2 ${
+                    isActiveLink(link.href)
+                      ? "bg-green-200 rounded-md p-2 font-bold"
+                      : "text-black p-2"
+                  }`}
+                  onClick={() => router.push(link.href)}
+                >
+                  {link.text}
+                </div>
+              ))}
+              <div className="p-2">
                 <Link
                   // onClick={() => closeOnCurrent("/sign-in")}
                   href="/sign-in"
@@ -45,7 +71,7 @@ const MobileSidebar = () => {
                   Sign in
                 </Link>
               </div>
-              <div className="flow-root">
+              <div className="p-2 flow-root">
                 <Link
                   // onClick={() => closeOnCurrent("/sign-up")}
                   href="/sign-up"
@@ -59,7 +85,12 @@ const MobileSidebar = () => {
                 </Link>
               </div>
             </div>
-          </SheetDescription>
+          </SheetClose>
+          {/* <SheetFooter>
+            <SheetClose asChild>
+              <Link href="/">Save changes</Link>
+            </SheetClose>
+          </SheetFooter> */}
         </SheetHeader>
       </SheetContent>
     </Sheet>

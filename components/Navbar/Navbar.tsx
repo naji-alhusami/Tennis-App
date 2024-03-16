@@ -5,8 +5,9 @@ import { pacifico, roboto } from "@/app/fonts";
 import MobileSidebar from "./MobileSidebar";
 import { buttonVariants } from "../ui/button";
 import Cart from "./Cart";
+import UserNavbar from "./UserNavbar";
 
-interface Props {}
+// interface Props {}
 
 const Navbar = () => {
   return (
@@ -32,6 +33,15 @@ const Navbar = () => {
                 </Link>
               </div>
             </div>
+            {/* <div className="flex flex-row mx-10">
+              <h2 className="mx-6">Home</h2>
+              <h2 className="mx-6">Book Court</h2>
+              <h2 className="mx-6">About</h2>
+              <h2 className="mx-6">Contact</h2>
+            </div> */}
+            {/* <div>
+              <UserNavbar />
+            </div> */}
             <div className="flex flex-row justify-center items-center">
               <div className="hidden md:flex md:justify-center md:items-center">
                 <Link

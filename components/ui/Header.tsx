@@ -15,7 +15,7 @@ function Header({ H3Header, H1Header, H2Header, PHeader }: HeaderProps) {
     <div className="relative flex flex-col justify-center items-center w-full px-8 text-center">
       <h3 className="absolute top-2 text-gray-500 text-md font-bold">{H3Header}</h3>
       <h1 className="text-gray-200 text-4xl m-0 font-bold"> {H1Header}</h1>
-      <h2 className=" m-0 text-green-600 text-5xl font-bold py-2"> {H2Header}</h2>
+      <h2 className=" m-0 text-green-600 text-4xl font-bold py-4"> {H2Header}</h2>
       <p className="text-md text-gray-600 font-semibold">{PHeader}</p>
       <hr
         style={{

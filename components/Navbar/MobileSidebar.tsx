@@ -47,9 +47,9 @@ const MobileSidebar = () => {
               {links.map((link, index) => (
                 <div
                   key={index}
-                  className={`mx-2 ${
+                  className={`mx-2 cursor-pointer hover:bg-green-200 hover:rounded-md hover:font-bold ${
                     isActiveLink(link.href)
-                      ? "bg-green-200 rounded-md p-2 font-bold"
+                      ? "bg-green-200 rounded-md p-2 font-bold "
                       : "text-black p-2"
                   }`}
                   onClick={() => router.push(link.href)}

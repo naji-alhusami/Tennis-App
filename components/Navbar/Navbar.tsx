@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
@@ -6,10 +7,21 @@ import MobileSidebar from "./MobileSidebar";
 import { buttonVariants } from "../ui/button";
 import Cart from "./Cart";
 import UserNavbar from "./UserNavbar";
+import { usePathname, useRouter } from "next/navigation";
 
 // interface Props {}
 
 const Navbar = () => {
+  const router = useRouter();
+  const path = usePathname();
+
+  const isActiveLink = (href: string) => path === href;
+
+  const links = [
+    { href: "/", text: "Home" },
+    { href: "/contact", text: "Contact" },
+  ];
+
   return (
     <div className="bg-white sticky z-50 h-16">
       <header className="relative bg-white">
@@ -33,12 +45,21 @@ const Navbar = () => {
                 </Link>
               </div>
             </div>
-            {/* <div className="flex flex-row mx-10">
-              <h2 className="mx-6">Home</h2>
-              <h2 className="mx-6">Book Court</h2>
-              <h2 className="mx-6">About</h2>
-              <h2 className="mx-6">Contact</h2>
-            </div> */}
+            <div className="md:w-full md:flex md:flex-row md:justify-end md:items-center md:mx-10 hidden">
+              {links.map((link, index) => (
+                <div
+                  key={index}
+                  className={`w-20 mx-2 text-center cursor-pointer hover:bg-green-200 hover:rounded-md hover:font-bold ${
+                    isActiveLink(link.href)
+                      ? "bg-green-200 rounded-md p-2 font-bold"
+                      : "text-black p-2"
+                  }`}
+                  onClick={() => router.push(link.href)}
+                >
+                  {link.text}
+                </div>
+              ))}
+            </div>
             {/* <div>
               <UserNavbar />
             </div> */}

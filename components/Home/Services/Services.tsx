@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, useAnimation, useInView } from "framer-motion";
 
-import Header from "../ui/Header";
+import Header from "../../ui/Header";
 import { servicesData } from "./ServicesData";
 // import classes from "./services.module.css";
 
@@ -57,7 +57,7 @@ function Services() {
         }}
         initial="hidden"
         animate={servicesControls}
-        transition={{ duration: 0.3, delay: 0.4 }}
+        transition={{ duration: 0.3, delay: 0.8 }}
         ref={servicesRef}
         className="border-t border-gray-200 bg-gray-50 p-10 flex flex-col md:flex-row" // services
       >

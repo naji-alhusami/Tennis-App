@@ -72,7 +72,7 @@ function Services() {
             // transition={{ duration: 0.3, delay: 0.4 }}
             // ref={servicesControls}
             key={service.id}
-            className="flex flex-col py-8 md:px-4" // service
+            className="flex flex-col my-8 md:px-4 md:mx-4 bg-white rounded-md p-2" // service
           >
             <div className="font-bold text-2xl pb-6">
               <Image src={service.image} alt="hi" />

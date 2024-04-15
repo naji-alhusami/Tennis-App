@@ -59,7 +59,7 @@ function Services() {
         animate={servicesControls}
         transition={{ duration: 0.3, delay: 0.8 }}
         ref={servicesRef}
-        className="border-t border-gray-200 bg-gray-50 p-10 flex flex-col md:flex-row" // services
+        className="border-t border-gray-200 bg-gray-200 p-10 flex flex-col md:flex-row" // services
       >
         {servicesData.map((service) => (
           <div

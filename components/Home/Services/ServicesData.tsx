@@ -1,6 +1,6 @@
-import icon1 from "@/public/images/icon1.png";
-import icon2 from "@/public/images/icon2.png";
-import icon3 from "@/public/images/icon3.png";
+import icon1 from "@/public/Images/icon1.png";
+import icon2 from "@/public/Images/icon2.png";
+import icon3 from "@/public/Images/icon3.png";
 
 export const servicesData = [
   {

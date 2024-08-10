@@ -3,8 +3,8 @@ import React from "react";
 import { TrainingLevelsData } from "./TrainingsData";
 import { Button, buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
-import player1 from "@/public/images/player1.jpg";
-import player2 from "@/public/images/player2.jpg";
+import player1 from "@/public/Images/player1.jpg";
+import player2 from "@/public/Images/player2.jpg";
 
 interface Props {}
 

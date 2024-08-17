@@ -48,10 +48,7 @@ const Signup = () => {
     },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: PAuthValidator) {
-    // Do something with the form values.
-    // This will be type-safe and validated.
     console.log(values);
   }
 
@@ -73,18 +70,16 @@ const Signup = () => {
                 className="space-y-8 w-full"
               >
                 <div className="flex flex-col justify-center items-center md:flex-row md:justify-center md:items-center">
-                  <div className="image-container">
-                    <Image
-                      src={logo}
-                      alt="signup-background"
-                      width={300}
-                      height={200}
-                      // sizes="(min-width: 808px) 100vw, 50vw"
-                      // className="md:max-w-4xl responsive-image" 
-                      priority
-                    />
-                  </div>
-                  <div className="w-full">
+                  <Image
+                    src={logo}
+                    alt="signup-background"
+                    width={330}
+                    height={200}
+                    // sizes="(min-width: 808px) 100vw, 50vw"
+                    // className="md:max-w-4xl responsive-image"
+                    priority
+                  />
+                  <div className="w-1/2">
                     <div className="w-full md:flex md:flex-row md:justify-center md:items-center">
                       <div className="my-4 mr-0 md:mr-4 flex-grow">
                         <FormField

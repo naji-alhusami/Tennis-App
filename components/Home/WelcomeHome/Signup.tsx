@@ -32,7 +32,7 @@ import { useForm } from "react-hook-form";
 import { PAuthValidator, PlayerAuthValidator } from "@/lib/account-validators";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
-import logo from "@/public/Images/logo.png";
+import logo from "../../../public/Images/logo.png";
 
 interface Props {}
 

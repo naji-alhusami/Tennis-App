@@ -32,7 +32,7 @@ import { useForm } from "react-hook-form";
 import { PAuthValidator, PlayerAuthValidator } from "@/lib/account-validators";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
-import logo from "@/public/Images/logo.png";
+// import logo from "@/public/Images/logo.png";
 
 interface Props {}
 
@@ -70,7 +70,7 @@ const Signup = () => {
                 className="space-y-8 w-full"
               >
                 <div className="flex flex-col justify-center items-center md:flex-row md:justify-center md:items-center">
-                  <Image
+                  {/* <Image
                     src={logo}
                     alt="signup-background"
                     width={330}
@@ -78,7 +78,7 @@ const Signup = () => {
                     // sizes="(min-width: 808px) 100vw, 50vw"
                     // className="md:max-w-4xl responsive-image"
                     priority
-                  />
+                  /> */}
                   <div className="w-1/2">
                     <div className="w-full md:flex md:flex-row md:justify-center md:items-center">
                       <div className="my-4 mr-0 md:mr-4 flex-grow">

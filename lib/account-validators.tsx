@@ -2,7 +2,7 @@
 import { z } from "zod";
 
 // Schema for players
-export const PlayerAuthValidator = z.object({
+export const SignupAuthValidator = z.object({
   name: z.string().min(6, { message: "Name must be at least 6 characters." }),
   email: z.string().email(),
   password: z
@@ -13,4 +13,14 @@ export const PlayerAuthValidator = z.object({
   }),
 });
 
-export type PAuthValidator = z.infer<typeof PlayerAuthValidator>;
+export const LoginAuthValidator = z.object({
+  email: z.string().email(),
+  password: z
+    .string()
+    .min(6, { message: "Password must be at least 6 characters." }),
+});
+
+// Combined schema using union
+export const AuthValidator = z.union([SignupAuthValidator, LoginAuthValidator]);
+
+export type PAuthValidator = z.infer<typeof AuthValidator>;

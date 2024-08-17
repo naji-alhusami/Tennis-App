@@ -8,6 +8,7 @@ import { buttonVariants } from "../ui/button";
 import Cart from "./Cart";
 import UserNavbar from "./UserNavbar";
 import { usePathname, useRouter } from "next/navigation";
+import Login from "../Home/WelcomeHome/Login";
 
 // interface Props {}
 
@@ -65,7 +66,8 @@ const Navbar = () => {
             </div> */}
             <div className="flex flex-row justify-center items-center">
               <div className="hidden md:flex md:justify-center md:items-center">
-                <Link
+                <Login />
+                {/* <Link
                   href="/sign-in"
                   className={cn(
                     "hidden md:flex text-green-700 text-2xl mr-4",
@@ -73,7 +75,7 @@ const Navbar = () => {
                   )}
                 >
                   Login
-                </Link>
+                </Link> */}
                 <span
                   className="hidden md:flex h-6 w-px bg-gray-200"
                   aria-hidden="true"

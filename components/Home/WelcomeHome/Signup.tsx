@@ -13,10 +13,10 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
+  // FormDescription,
   FormField,
   FormItem,
-  FormLabel,
+  // FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import {
@@ -31,6 +31,8 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { PAuthValidator, PlayerAuthValidator } from "@/lib/account-validators";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
+import logo from "@/public/Images/logo.png";
 
 interface Props {}
 
@@ -61,97 +63,123 @@ const Signup = () => {
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
-          <DrawerTitle className="text-center">Signup</DrawerTitle>
+          <DrawerTitle className="text-center font-bold text-3xl">
+            Signup
+          </DrawerTitle>
           <DrawerDescription>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-8 w-full"
               >
-                <div className="md:w-full md:flex md:flex-row md:justify-center md:items-center">
-                  <div>
-                    <FormField
-                      control={form.control}
-                      name="name"
-                      render={({ field }) => (
-                        <FormItem>
-                          {/* <FormLabel>Username</FormLabel> */}
-                          <FormControl>
-                            <Input placeholder="Name" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
+                <div className="flex flex-col justify-center items-center md:flex-row md:justify-center md:items-center">
+                  <div className="image-container">
+                    <Image
+                      src={logo}
+                      alt="signup-background"
+                      width={300}
+                      height={200}
+                      // sizes="(min-width: 808px) 100vw, 50vw"
+                      // className="md:max-w-4xl responsive-image" 
+                      priority
                     />
                   </div>
-                  <div className="mt-4">
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          {/* <FormLabel>Username</FormLabel> */}
-                          <FormControl>
-                            <Input placeholder="Email" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                  <div className="w-full">
+                    <div className="w-full md:flex md:flex-row md:justify-center md:items-center">
+                      <div className="my-4 mr-0 md:mr-4 flex-grow">
+                        <FormField
+                          control={form.control}
+                          name="name"
+                          render={({ field }) => (
+                            <FormItem>
+                              {/* <FormLabel>Username</FormLabel> */}
+                              <FormControl>
+                                <Input placeholder="Name" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                      <div className="mt-4 md:mt-0 flex-grow">
+                        <FormField
+                          control={form.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              {/* <FormLabel>Username</FormLabel> */}
+                              <FormControl>
+                                <Input placeholder="Email" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                    </div>
+                    <div className="mt-4 md:mt-0 w-full md:w-full md:flex md:flex-row md:justify-center md:items-center">
+                      <div className="mr-0 md:mr-4 flex-grow">
+                        <FormField
+                          control={form.control}
+                          name="password"
+                          render={({ field }) => (
+                            <FormItem>
+                              {/* <FormLabel>Username</FormLabel> */}
+                              <FormControl>
+                                <Input placeholder="Password" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                      <div className="mt-4 md:mt-0 flex-grow">
+                        <FormField
+                          control={form.control}
+                          name="level"
+                          render={({ field }) => (
+                            <FormItem>
+                              <Select
+                                onValueChange={field.onChange}
+                                defaultValue={field.value}
+                              >
+                                <FormControl>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select your level" />
+                                  </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                  <SelectItem value="Beginner">
+                                    Beginner
+                                  </SelectItem>
+                                  <SelectItem value="Intermediate">
+                                    Intermediate
+                                  </SelectItem>
+                                  <SelectItem value="Advanced">
+                                    Advanced
+                                  </SelectItem>
+                                </SelectContent>
+                              </Select>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                    </div>
+                    <div className="w-full mt-4 flex flex-row justify-center items-center">
+                      <Button type="submit">Signup</Button>
+                      <DrawerFooter>
+                        <DrawerClose asChild>
+                          <Button variant="outline">Cancel</Button>
+                        </DrawerClose>
+                      </DrawerFooter>
+                    </div>
                   </div>
                 </div>
-                <div className="md:flex md:flex-row md:justify-center md:items-center">
-                  <FormField
-                    control={form.control}
-                    name="password"
-                    render={({ field }) => (
-                      <FormItem>
-                        {/* <FormLabel>Username</FormLabel> */}
-                        <FormControl>
-                          <Input placeholder="Password" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="level"
-                    render={({ field }) => (
-                      <FormItem>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select your level" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="Beginner">Beginner</SelectItem>
-                            <SelectItem value="Intermediate">
-                              Intermediate
-                            </SelectItem>
-                            <SelectItem value="Advanced">Advanced</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <Button type="submit">Submit</Button>
               </form>
             </Form>
           </DrawerDescription>
         </DrawerHeader>
-        <DrawerFooter>
-          {/* <Button>Submit</Button> */}
-          <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
-          </DrawerClose>
-        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );

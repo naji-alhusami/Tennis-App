@@ -8,7 +8,7 @@ import { buttonVariants } from "../ui/button";
 import Cart from "./Cart";
 import UserNavbar from "./UserNavbar";
 import { usePathname, useRouter } from "next/navigation";
-import Login from "../Home/WelcomeHome/Login";
+import Login from "../Authentication/Login";
 
 // interface Props {}
 
@@ -30,14 +30,16 @@ const Navbar = () => {
           <div className=" mx-10 flex h-16 items-center justify-center">
             {/* mobile style */}
             <div className="w-full flex flex-row justify-start items-center">
-              <div className="md:hidden">
-                <MobileSidebar />
+              <div className="flex flex-row justify-center items-center md:hidden">
+                {/* {isLogin ? <MobileSidebar /> : */}
+                <Login />
+                {/* } */}
               </div>
               <div>
-                <Link href="/">
+                <Link href="/" className="text-center">
                   <h1
                     className={cn(
-                      " text-green-700 text-2xl",
+                      " text-green-700 text-2xl text-center",
                       pacifico.className
                     )}
                   >

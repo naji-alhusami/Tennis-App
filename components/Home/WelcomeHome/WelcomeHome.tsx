@@ -5,10 +5,9 @@ import TypeWriter from "@/lib/TypeWriter";
 import Image from "next/image";
 import background from "@/public/Images/background.svg";
 import Link from "next/link";
-import { buttonVariants } from "../ui/button";
+import { buttonVariants } from "../../ui/button";
 import TypewriterComponent from "typewriter-effect";
-import Signup from "./WelcomeHome/Signup";
-import SignupDrawer from "./WelcomeHome/SignupDrawer";
+import Signup from "../../Authentication/Signup";
 
 const WelcomeHome = () => {
   return (
@@ -43,7 +42,7 @@ const WelcomeHome = () => {
           {/* <Link href="/auth/signup" className={buttonVariants()}>
             Become Member &rarr;
           </Link> */}
-          <SignupDrawer />
+          <Signup />
           <Link href="/" className={buttonVariants({ variant: "outline" })}>
             Contact Us
           </Link>

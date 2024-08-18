@@ -9,7 +9,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -25,7 +25,8 @@ import { useForm } from "react-hook-form";
 import { PAuthValidator, LoginAuthValidator } from "@/lib/account-validators";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
-import logo from "../../../public/Images/logo.jpg";
+import logo from "../../public/Images/logo.jpg";
+import { CircleUserRound } from "lucide-react";
 
 interface Props {}
 
@@ -42,10 +43,15 @@ const Login = () => {
   function onSubmit(values: PAuthValidator) {
     console.log(values);
   }
-  
+
   return (
     <Drawer>
-      <DrawerTrigger className={buttonVariants()}>Login</DrawerTrigger>
+      <DrawerTrigger>
+        <CircleUserRound className="text-green-700 h-6 w-6" />
+      </DrawerTrigger>
+      {/* <DrawerTrigger className={buttonVariants()}>
+        Login
+      </DrawerTrigger> */}
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle className="text-center font-bold text-3xl">

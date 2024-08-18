@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import {
   Sheet,
   SheetContent,
@@ -15,15 +15,13 @@ import { Menu } from "lucide-react";
 // import { buttonVariants } from "../ui/button";
 // import { cn } from "@/lib/utils";
 import { useRouter, usePathname } from "next/navigation";
-import Signup from "../Home/WelcomeHome/Signup";
-import Login from "../Home/WelcomeHome/Login";
-import SignupDrawer from "../Home/WelcomeHome/SignupDrawer";
+import Signup from "../Authentication/Signup";
+import Login from "../Authentication/Login";
 import { DrawerTrigger } from "../ui/drawer";
 
 // interface Props {}
 
 const MobileSidebar = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const router = useRouter();
   const path = usePathname();
 
@@ -61,45 +59,10 @@ const MobileSidebar = () => {
                   {link.text}
                 </div>
               ))}
-              <div className="p-2">
-                {/* <Link
-                  // onClick={() => closeOnCurrent("/sign-in")}
-                  href="/sign-in"
-                  // className="-m-2 block p-2 font-medium text-gray-900"
-                  // className={buttonVariants()}
-                  className={cn(
-                    "w-full text-green-700 text-2xl",
-                    buttonVariants()
-                  )}
-                >
-                  Login
-                </Link> */}
-                <Login />
-              </div>
-              <div className="p-2 flow-root">
-                {/* <Link
-                  // onClick={() => closeOnCurrent("/sign-up")}
-                  href="/sign-up"
-                  // className="-m-2 block p-2 font-medium text-gray-900"
-                  className={cn(
-                    "w-full text-green-700 text-2xl",
-                    buttonVariants({ variant: "outline" })
-                  )}
-                >
-                  Signup
-                </Link> */}
-                <DrawerTrigger
-                  className="cursor-pointer text-green-700 text-2xl"
-                  onClick={() => setIsDrawerOpen(true)}
-                >
-                  Become a Member &rarr;
-                </DrawerTrigger>
-              </div>
             </div>
           </SheetClose>
         </SheetHeader>
       </SheetContent>
-      {isDrawerOpen && <SignupDrawer onClose={() => setIsDrawerOpen(false)} />}
     </Sheet>
   );
 };

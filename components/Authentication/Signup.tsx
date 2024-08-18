@@ -29,7 +29,7 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
-import { PAuthValidator, SignupAuthValidator } from "@/lib/account-validators";
+import { PAuthValidator, SignupAuthValidator } from "@/app/lib/account-validators";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import logo from "../../public/Images/logo.jpg";

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import SlowlyShow from "@/lib/SlowlyShow";
-import TypeWriter from "@/lib/TypeWriter";
+import SlowlyShow from "@/app/lib/SlowlyShow";
+import TypeWriter from "@/app/lib/TypeWriter";
 import Image from "next/image";
 import background from "@/public/Images/background.svg";
 import Link from "next/link";

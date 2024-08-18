@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/app/lib/utils";
 import React, { type ReactNode } from "react";
 
 interface WrapperProps {

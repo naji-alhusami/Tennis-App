@@ -1,15 +1,14 @@
-"use client";
 import { z } from "zod";
 
 // Schema for players
 export const SignupAuthValidator = z.object({
-  name: z.string().min(6, { message: "Name must be at least 6 characters." }),
+  name: z.string().min(1, { message: "Name is Required." }),
   email: z.string().email(),
   password: z
     .string()
     .min(6, { message: "Password must be at least 6 characters." }),
   level: z.string({
-    required_error: "Please select your level.",
+    required_error: "Level is Required.",
   }),
 });
 

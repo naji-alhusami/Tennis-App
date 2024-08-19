@@ -15,8 +15,8 @@ import { Menu } from "lucide-react";
 // import { buttonVariants } from "../ui/button";
 // import { cn } from "@/lib/utils";
 import { useRouter, usePathname } from "next/navigation";
-import Signup from "../Authentication/Signup";
-import Login from "../Authentication/Login";
+import Signup from "../Authentication/SignupForm";
+import Login from "../Authentication/LoginForm";
 import { DrawerTrigger } from "../ui/drawer";
 
 // interface Props {}

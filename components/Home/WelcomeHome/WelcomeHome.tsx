@@ -7,7 +7,7 @@ import background from "@/public/Images/background.svg";
 import Link from "next/link";
 import { buttonVariants } from "../../ui/button";
 import TypewriterComponent from "typewriter-effect";
-import Signup from "../../Authentication/Signup";
+import Signup from "../../Authentication/SignupForm";
 
 const WelcomeHome = () => {
   return (

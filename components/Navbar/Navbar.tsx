@@ -8,7 +8,7 @@ import { buttonVariants } from "../ui/button";
 import Cart from "./Cart";
 import UserNavbar from "./UserNavbar";
 import { usePathname, useRouter } from "next/navigation";
-import Login from "../Authentication/Login";
+import Login from "../Authentication/LoginForm";
 
 // interface Props {}
 

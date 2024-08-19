@@ -22,16 +22,26 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
-import { PAuthValidator, LoginAuthValidator } from "@/app/lib/account-validators";
+import {
+  PAuthValidator,
+  LoginAuthValidator,
+} from "@/app/lib/account-validators";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import logo from "../../public/Images/logo.jpg";
 import { CircleUserRound } from "lucide-react";
+import { LoginAction } from "@/actions/LoginAction";
+import { useState, useTransition } from "react";
+import FormSuccess from "./FormSuccess";
+import FormError from "./FormError";
 
 interface Props {}
 
 const Login = () => {
-  // 1. Define your form.
+  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
+
   const form = useForm<PAuthValidator>({
     resolver: zodResolver(LoginAuthValidator),
     defaultValues: {
@@ -41,7 +51,15 @@ const Login = () => {
   });
 
   function onSubmit(values: PAuthValidator) {
-    console.log(values);
+    setSuccess("");
+    setError("");
+
+    startTransition(() => {
+      LoginAction(values).then((data) => {
+        setSuccess(data.success);
+        setError(data.error);
+      });
+    });
   }
 
   return (
@@ -80,7 +98,12 @@ const Login = () => {
                             <FormItem>
                               {/* <FormLabel>Username</FormLabel> */}
                               <FormControl>
-                                <Input placeholder="Email" {...field} />
+                                <Input
+                                  disabled={isPending}
+                                  type="email"
+                                  placeholder="Email"
+                                  {...field}
+                                />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -89,13 +112,18 @@ const Login = () => {
                       </div>
                       <div className="mt-4 md:mt-0 flex-grow">
                         <FormField
+                          disabled={isPending}
                           control={form.control}
                           name="password"
                           render={({ field }) => (
                             <FormItem>
                               {/* <FormLabel>Username</FormLabel> */}
                               <FormControl>
-                                <Input placeholder="Password" {...field} />
+                                <Input
+                                  type="password"
+                                  placeholder="******"
+                                  {...field}
+                                />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -103,8 +131,12 @@ const Login = () => {
                         />
                       </div>
                     </div>
+                    <FormSuccess message={success} />
+                    <FormError message={error} />
                     <div className="w-full mt-4 flex flex-row justify-center items-center">
-                      <Button type="submit">Login</Button>
+                      <Button disabled={isPending} type="submit">
+                        Login
+                      </Button>
                       <DrawerFooter>
                         <DrawerClose asChild>
                           <Button variant="outline">Cancel</Button>

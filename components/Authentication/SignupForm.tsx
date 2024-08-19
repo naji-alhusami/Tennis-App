@@ -29,16 +29,27 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
-import { PAuthValidator, SignupAuthValidator } from "@/app/lib/account-validators";
+import {
+  PAuthValidator,
+  SignupAuthValidator,
+} from "@/app/lib/account-validators";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import logo from "../../public/Images/logo.jpg";
+import { useState, useTransition } from "react";
+import FormSuccess from "./FormSuccess";
+import FormError from "./FormError";
+import { SignupAction } from "@/actions/SignupAction";
 
 // interface SignupDrawerProps {
 //   onClose: () => void;
 // }
 
 const Signup = () => {
+  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
+
   const form = useForm<PAuthValidator>({
     resolver: zodResolver(SignupAuthValidator),
     defaultValues: {
@@ -50,7 +61,15 @@ const Signup = () => {
   });
 
   function onSubmit(values: PAuthValidator) {
-    console.log(values);
+    setSuccess("");
+    setError("");
+
+    startTransition(() => {
+      SignupAction(values).then((data) => {
+        setSuccess(data.success);
+        setError(data.error);
+      });
+    });
   }
 
   return (
@@ -90,7 +109,11 @@ const Signup = () => {
                             <FormItem>
                               {/* <FormLabel>Username</FormLabel> */}
                               <FormControl>
-                                <Input placeholder="Name" {...field} />
+                                <Input
+                                  disabled={isPending}
+                                  placeholder="Name"
+                                  {...field}
+                                />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -105,7 +128,12 @@ const Signup = () => {
                             <FormItem>
                               {/* <FormLabel>Username</FormLabel> */}
                               <FormControl>
-                                <Input placeholder="Email" {...field} />
+                                <Input
+                                  disabled={isPending}
+                                  type="email"
+                                  placeholder="Email"
+                                  {...field}
+                                />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -122,7 +150,12 @@ const Signup = () => {
                             <FormItem>
                               {/* <FormLabel>Username</FormLabel> */}
                               <FormControl>
-                                <Input placeholder="Password" {...field} />
+                                <Input
+                                  disabled={isPending}
+                                  type="password"
+                                  placeholder="******"
+                                  {...field}
+                                />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -162,6 +195,8 @@ const Signup = () => {
                         />
                       </div>
                     </div>
+                    <FormSuccess message={success} />
+                    <FormError message={error} />
                     <div className="w-full mt-4 flex flex-row justify-center items-center">
                       <Button type="submit">Signup</Button>
                       <DrawerFooter>

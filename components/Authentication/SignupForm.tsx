@@ -164,6 +164,7 @@ const Signup = () => {
                       </div>
                       <div className="mt-4 md:mt-0 flex-grow">
                         <FormField
+                          disabled={isPending}
                           control={form.control}
                           name="level"
                           render={({ field }) => (
@@ -195,10 +196,12 @@ const Signup = () => {
                         />
                       </div>
                     </div>
-                    <FormSuccess message={success} />
+                    <FormSuccess message={success}  />
                     <FormError message={error} />
                     <div className="w-full mt-4 flex flex-row justify-center items-center">
-                      <Button type="submit">Signup</Button>
+                      <Button disabled={isPending} type="submit">
+                        Signup
+                      </Button>
                       <DrawerFooter>
                         <DrawerClose asChild>
                           <Button variant="outline">Cancel</Button>

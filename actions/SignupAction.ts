@@ -1,9 +1,12 @@
 "use server";
+import prisma from "@/app/lib/prismadb";
 
+import { getUSerByEmail } from "@/app/data/user";
 import {
   PAuthValidator,
   SignupAuthValidator,
 } from "@/app/lib/account-validators";
+import bcrypt from "bcrypt";
 
 export const SignupAction = async (values: PAuthValidator) => {
   const validatedFields = SignupAuthValidator.safeParse(values);
@@ -11,6 +14,24 @@ export const SignupAction = async (values: PAuthValidator) => {
   if (!validatedFields.success) {
     return { error: "Invalid Fields" };
   }
+
+  const { name, email, password } = validatedFields.data;
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const existingUser = await getUSerByEmail(email);
+
+  if (existingUser) {
+    return { error: "Email already exist" };
+  }
+
+  await prisma.user.create({
+    data: {
+      name,
+      email,
+      hashedPassword: hashedPassword,
+    },
+  });
 
   return { success: "Email Sent!" };
   // console.log(values);

@@ -6,7 +6,7 @@ import {
   PAuthValidator,
   SignupAuthValidator,
 } from "@/app/lib/account-validators";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 export const SignupAction = async (values: PAuthValidator) => {
   const validatedFields = SignupAuthValidator.safeParse(values);
@@ -29,7 +29,7 @@ export const SignupAction = async (values: PAuthValidator) => {
     data: {
       name,
       email,
-      hashedPassword: hashedPassword,
+      password: hashedPassword,
     },
   });
 

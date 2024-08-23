@@ -16,6 +16,7 @@ import {
   // FormDescription,
   FormField,
   FormItem,
+  FormLabel,
   // FormLabel,
   FormMessage,
 } from "@/components/ui/form";
@@ -56,101 +57,108 @@ const Login = () => {
 
     startTransition(() => {
       LoginAction(values).then((data) => {
-        setSuccess(data.success);
-        setError(data.error);
+        if (data) {
+          setSuccess(data.success);
+          setError(data.error);
+        }
       });
     });
   }
 
   return (
-    <Drawer>
-      <DrawerTrigger>
-        <CircleUserRound className="text-green-700 h-6 w-6" />
-      </DrawerTrigger>
-      {/* <DrawerTrigger className={buttonVariants()}>
-        Login
-      </DrawerTrigger> */}
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle className="text-center font-bold text-3xl">
-            Login
-          </DrawerTitle>
-          <DrawerDescription>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-8 w-full"
-              >
-                <div className="flex flex-col justify-center items-center md:flex-row md:justify-between md:items-center mb-4">
-                  <Image
+    // <Drawer>
+    //   <DrawerTrigger>
+    //     <CircleUserRound className="text-green-700 h-6 w-6" />
+    //   </DrawerTrigger>
+    //   {/* <DrawerTrigger className={buttonVariants()}>
+    //     Login
+    //   </DrawerTrigger> */}
+    //   <DrawerContent>
+    //     <DrawerHeader>
+    //       <DrawerTitle className="text-center font-bold text-3xl">
+    //         Login
+    //       </DrawerTitle>
+    //       <DrawerDescription>
+    // <div className="m-4 bg-purple-500 p-40 rounded-full flex flex-col items-center justify-center">
+    <div className="w-full flex flex-col items-center justify-center">
+      <h1 className="text-3xl text-center font-bold my-6">Login</h1>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-8 w-full"
+        >
+          <div className="flex flex-col justify-center items-center md:flex-row md:justify-between md:items-center mb-4">
+            {/* <Image
                     src={logo}
                     alt="auth-background"
                     style={{ width: "300px", height: "auto" }}
                     priority
+                  /> */}
+            <div className="w-1/2">
+              <div className="w-full md:flex md:flex-col md:justify-center md:items-center md:flex-grow">
+                <div className="md:flex-grow mr-0 md:mr-4">
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input
+                            disabled={isPending}
+                            type="email"
+                            placeholder="Email"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                  <div className="w-1/2">
-                    <div className="w-full md:flex md:flex-row md:justify-center md:items-center md:flex-grow">
-                      <div className="md:flex-grow mr-0 md:mr-4">
-                        <FormField
-                          control={form.control}
-                          name="email"
-                          render={({ field }) => (
-                            <FormItem>
-                              {/* <FormLabel>Username</FormLabel> */}
-                              <FormControl>
-                                <Input
-                                  disabled={isPending}
-                                  type="email"
-                                  placeholder="Email"
-                                  {...field}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-                      <div className="mt-4 md:mt-0 flex-grow">
-                        <FormField
-                          disabled={isPending}
-                          control={form.control}
-                          name="password"
-                          render={({ field }) => (
-                            <FormItem>
-                              {/* <FormLabel>Username</FormLabel> */}
-                              <FormControl>
-                                <Input
-                                  type="password"
-                                  placeholder="******"
-                                  {...field}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-                    </div>
-                    <FormSuccess message={success} />
-                    <FormError message={error} />
-                    <div className="w-full mt-4 flex flex-row justify-center items-center">
-                      <Button disabled={isPending} type="submit">
-                        Login
-                      </Button>
-                      <DrawerFooter>
-                        <DrawerClose asChild>
-                          <Button variant="outline">Cancel</Button>
-                        </DrawerClose>
-                      </DrawerFooter>
-                    </div>
-                  </div>
                 </div>
-              </form>
-            </Form>
-          </DrawerDescription>
-        </DrawerHeader>
-      </DrawerContent>
-    </Drawer>
+                <div className="mt-4 md:mt-0 flex-grow">
+                  <FormField
+                    disabled={isPending}
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Password</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="password"
+                            placeholder="******"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+              <FormSuccess message={success} />
+              <FormError message={error} />
+              <div className="w-full mt-4 flex flex-row justify-center items-center">
+                <Button disabled={isPending} type="submit">
+                  Login
+                </Button>
+                {/* <DrawerFooter>
+                        <DrawerClose asChild> */}
+                {/* <Button variant="outline">Cancel</Button> */}
+                {/* </DrawerClose>
+                      </DrawerFooter> */}
+              </div>
+            </div>
+          </div>
+        </form>
+      </Form>
+    </div>
+
+    //       </DrawerDescription>
+    //     </DrawerHeader>
+    //   </DrawerContent>
+    // </Drawer>
   );
 };
 

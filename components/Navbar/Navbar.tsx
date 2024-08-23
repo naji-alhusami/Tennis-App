@@ -32,7 +32,7 @@ const Navbar = () => {
             <div className="w-full flex flex-row justify-start items-center">
               <div className="flex flex-row justify-center items-center md:hidden">
                 {/* {isLogin ? <MobileSidebar /> : */}
-                <Login />
+                {/* <Login /> */}
                 {/* } */}
               </div>
               <div>
@@ -68,16 +68,16 @@ const Navbar = () => {
             </div> */}
             <div className="flex flex-row justify-center items-center">
               <div className="hidden md:flex md:justify-center md:items-center">
-                <Login />
-                {/* <Link
-                  href="/sign-in"
+                {/* <Login /> */}
+                <Link
+                  href="/authentication/login"
                   className={cn(
                     "hidden md:flex text-green-700 text-2xl mr-4",
                     buttonVariants()
                   )}
                 >
                   Login
-                </Link> */}
+                </Link>
                 <span
                   className="hidden md:flex h-6 w-px bg-gray-200"
                   aria-hidden="true"

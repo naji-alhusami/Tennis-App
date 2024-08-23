@@ -1,15 +1,5 @@
 "use client";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -20,6 +10,8 @@ import {
   // FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa6";
 
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
@@ -35,6 +27,7 @@ import { LoginAction } from "@/actions/LoginAction";
 import { useState, useTransition } from "react";
 import FormSuccess from "./FormSuccess";
 import FormError from "./FormError";
+import Link from "next/link";
 
 interface Props {}
 
@@ -80,23 +73,17 @@ const Login = () => {
     //       </DrawerTitle>
     //       <DrawerDescription>
     // <div className="m-4 bg-purple-500 p-40 rounded-full flex flex-col items-center justify-center">
-    <div className="w-full flex flex-col items-center justify-center">
+    <div className="w-full flex flex-col items-center justify-center md:mx-40">
       <h1 className="text-3xl text-center font-bold my-6">Login</h1>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-8 w-full"
         >
-          <div className="flex flex-col justify-center items-center md:flex-row md:justify-between md:items-center mb-4">
-            {/* <Image
-                    src={logo}
-                    alt="auth-background"
-                    style={{ width: "300px", height: "auto" }}
-                    priority
-                  /> */}
+          <div className="flex flex-col justify-center items-center md:flex-row md:justify-center mb-4">
             <div className="w-1/2">
-              <div className="w-full md:flex md:flex-col md:justify-center md:items-center md:flex-grow">
-                <div className="md:flex-grow mr-0 md:mr-4">
+              <div className="w-full md:flex md:flex-col md:flex-grow">
+                <div className="md:flex-grow">
                   <FormField
                     control={form.control}
                     name="email"
@@ -116,7 +103,7 @@ const Login = () => {
                     )}
                   />
                 </div>
-                <div className="mt-4 md:mt-0 flex-grow">
+                <div className="mt-4 mb-2 flex-grow">
                   <FormField
                     disabled={isPending}
                     control={form.control}
@@ -136,29 +123,34 @@ const Login = () => {
                     )}
                   />
                 </div>
+                <Link href="/">Forget Password?</Link>
               </div>
               <FormSuccess message={success} />
               <FormError message={error} />
-              <div className="w-full mt-4 flex flex-row justify-center items-center">
-                <Button disabled={isPending} type="submit">
+              <div className="w-full mt-4 mb-8 flex flex-row justify-center items-center gap-x-6">
+                <Button className="text-lg" disabled={isPending} type="submit">
                   Login
                 </Button>
-                {/* <DrawerFooter>
-                        <DrawerClose asChild> */}
-                {/* <Button variant="outline">Cancel</Button> */}
-                {/* </DrawerClose>
-                      </DrawerFooter> */}
+              </div>
+              <div className="flex flex-row justify-center items-center gap-x-10">
+                <Button size="lg" variant="outline">
+                  <FcGoogle className="h-6 w-6" />
+                </Button>
+                <Button size="lg" variant="outline">
+                  <FaFacebook className="h-6 w-6" />
+                </Button>
+              </div>
+              <div className="text-center my-4 flex flex-row justify-between items-center">
+                <p>Do Not Have An Account?</p>
+                <Link href="/authentication/signup">
+                  <Button variant="link">Signup</Button>
+                </Link>
               </div>
             </div>
           </div>
         </form>
       </Form>
     </div>
-
-    //       </DrawerDescription>
-    //     </DrawerHeader>
-    //   </DrawerContent>
-    // </Drawer>
   );
 };
 

@@ -30,7 +30,7 @@ const page = () => {
           // filter: "brightness(0.5)",
         }}
       ></div>
-      <div className="w-full absolute top-32 z-10 flex justify-center items-center bg-white bg-opacity-60">
+      <div className="w-full absolute top-20 z-10 flex justify-center items-center bg-white bg-opacity-60">
         <Login />
       </div>
     </div>

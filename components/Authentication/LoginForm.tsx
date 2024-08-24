@@ -1,5 +1,5 @@
 "use client";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -20,18 +20,22 @@ import {
   LoginAuthValidator,
 } from "@/app/lib/account-validators";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
-import logo from "../../public/Images/logo.jpg";
-import { CircleUserRound } from "lucide-react";
+// import Image from "next/image";
+// import logo from "../../public/Images/logo.jpg";
+// import { CircleUserRound } from "lucide-react";
 import { LoginAction } from "@/actions/LoginAction";
 import { useState, useTransition } from "react";
-import FormSuccess from "./FormSuccess";
-import FormError from "./FormError";
+// import FormSuccess from "./FormSuccess";
+// import FormError from "./FormError";
 import Link from "next/link";
+import { useToast } from "../ui/use-toast";
 
-interface Props {}
+// interface LoginFormProps {
+//   authType: string;
+// }
 
-const Login = () => {
+const LoginForm = () => {
+  const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
@@ -51,7 +55,11 @@ const Login = () => {
     startTransition(() => {
       LoginAction(values).then((data) => {
         if (data) {
-          setSuccess(data.success);
+          toast({
+            title: "Uh oh! Something went wrong.",
+            description: "There was a problem with your request.",
+          });
+          // setSuccess(data.success);
           setError(data.error);
         }
       });
@@ -59,20 +67,6 @@ const Login = () => {
   }
 
   return (
-    // <Drawer>
-    //   <DrawerTrigger>
-    //     <CircleUserRound className="text-green-700 h-6 w-6" />
-    //   </DrawerTrigger>
-    //   {/* <DrawerTrigger className={buttonVariants()}>
-    //     Login
-    //   </DrawerTrigger> */}
-    //   <DrawerContent>
-    //     <DrawerHeader>
-    //       <DrawerTitle className="text-center font-bold text-3xl">
-    //         Login
-    //       </DrawerTitle>
-    //       <DrawerDescription>
-    // <div className="m-4 bg-purple-500 p-40 rounded-full flex flex-col items-center justify-center">
     <div className="w-full flex flex-col items-center justify-center md:mx-40">
       <h1 className="text-3xl text-center font-bold my-6">Login</h1>
       <Form {...form}>
@@ -123,10 +117,10 @@ const Login = () => {
                     )}
                   />
                 </div>
-                <Link href="/">Forget Password?</Link>
+                <Link className="hover:underline" href="/">Forget Password?</Link>
               </div>
-              <FormSuccess message={success} />
-              <FormError message={error} />
+              {/* <FormSuccess message={success} /> */}
+              {/* <FormError message={error} /> */}
               <div className="w-full mt-4 mb-8 flex flex-row justify-center items-center gap-x-6">
                 <Button className="text-lg" disabled={isPending} type="submit">
                   Login
@@ -140,18 +134,18 @@ const Login = () => {
                   <FaFacebook className="h-6 w-6" />
                 </Button>
               </div>
-              <div className="text-center my-4 flex flex-row justify-between items-center">
-                <p>Do Not Have An Account?</p>
-                <Link href="/authentication/signup">
-                  <Button variant="link">Signup</Button>
-                </Link>
-              </div>
             </div>
           </div>
         </form>
       </Form>
+      <div className="text-center my-4 flex flex-row justify-between items-center">
+        <p className="text-sm">Do Not Have An Account?</p>
+        <Link href="/authentication/signup">
+          <Button variant="link">Signup</Button>
+        </Link>
+      </div>
     </div>
   );
 };
 
-export default Login;
+export default LoginForm;

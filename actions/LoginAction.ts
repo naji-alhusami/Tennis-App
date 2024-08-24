@@ -16,7 +16,6 @@ export const LoginAction = async (values: PAuthValidator) => {
 
   const { email, password } = validatedFields.data;
   // return { success: "Email Sent!" };
-  // console.log(values);
 
   try {
     await signIn("credentials", {

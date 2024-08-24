@@ -39,10 +39,10 @@ const WelcomeHome = () => {
           <SlowlyShow text="We invite you to join us in this journey. The court is set, the ball is in your court. Come be a part of TENNIS NET Club." />
         </div>
         <div className="h-32 flex flex-col gap-y-4">
-          {/* <Link href="/auth/signup" className={buttonVariants()}>
+          <Link href="/authentication/signup" className={buttonVariants()}>
             Become Member &rarr;
-          </Link> */}
-          <Signup />
+          </Link>
+          {/* <Signup /> */}
           <Link href="/" className={buttonVariants({ variant: "outline" })}>
             Contact Us
           </Link>

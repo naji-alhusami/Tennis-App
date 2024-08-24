@@ -1,7 +1,7 @@
 "use server";
 import prisma from "@/app/lib/prismadb";
 
-import { getUSerByEmail } from "@/app/data/user";
+import { getUserByEmail } from "@/app/data/user";
 import {
   PAuthValidator,
   SignupAuthValidator,
@@ -19,7 +19,7 @@ export const SignupAction = async (values: PAuthValidator) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const existingUser = await getUSerByEmail(email);
+  const existingUser = await getUserByEmail(email);
 
   if (existingUser) {
     return { error: "Email already exist" };
@@ -34,5 +34,4 @@ export const SignupAction = async (values: PAuthValidator) => {
   });
 
   return { success: "Email Sent!" };
-  // console.log(values);
 };

@@ -2,11 +2,14 @@ import React from "react";
 import Image from "next/image";
 
 import signup from "@/public/Images/signup.jpg";
-import Login from "@/components/Authentication/LoginForm";
+import SignupForm from "@/components/Authentication/SignupForm";
+import LoginForm from "@/components/Authentication/LoginForm";
 
-interface Props {}
+interface AuthenticationProps {
+  params: { authType: string };
+}
 
-const page = () => {
+const page: React.FC<AuthenticationProps> = ({ params: { authType } }) => {
   return (
     // <div className="">
     //   <Image
@@ -26,12 +29,21 @@ const page = () => {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           // backgroundSize: "26rem",
-            backgroundSize: "cover",
+          backgroundSize: "cover",
           // filter: "brightness(0.5)",
         }}
       ></div>
       <div className="w-full absolute top-20 z-10 flex justify-center items-center bg-white bg-opacity-60">
-        <Login />
+        {authType === "signup" ? (
+          <SignupForm />
+        ) : authType === "login" ? (
+          <LoginForm
+          // callbackUrl={searchParams.callbackUrl || "/"}
+          />
+        ) : (
+          // <AddExtraInfo />
+          <p>s</p>
+        )}
       </div>
     </div>
   );

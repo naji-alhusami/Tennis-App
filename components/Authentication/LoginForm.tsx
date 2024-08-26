@@ -23,12 +23,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 // import Image from "next/image";
 // import logo from "../../public/Images/logo.jpg";
 // import { CircleUserRound } from "lucide-react";
-import { LoginAction } from "@/actions/LoginAction";
+import { LoginAction, OAuth } from "@/actions/LoginAction";
 import { useState, useTransition } from "react";
 // import FormSuccess from "./FormSuccess";
 // import FormError from "./FormError";
 import Link from "next/link";
 import { useToast } from "../ui/use-toast";
+import { signIn } from "@/auth";
 
 // interface LoginFormProps {
 //   authType: string;
@@ -117,7 +118,9 @@ const LoginForm = () => {
                     )}
                   />
                 </div>
-                <Link className="hover:underline" href="/">Forget Password?</Link>
+                <Link className="hover:underline" href="/">
+                  Forget Password?
+                </Link>
               </div>
               {/* <FormSuccess message={success} /> */}
               {/* <FormError message={error} /> */}
@@ -127,10 +130,18 @@ const LoginForm = () => {
                 </Button>
               </div>
               <div className="flex flex-row justify-center items-center gap-x-10">
-                <Button size="lg" variant="outline">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={() => OAuth("google")}
+                >
                   <FcGoogle className="h-6 w-6" />
                 </Button>
-                <Button size="lg" variant="outline">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={() => OAuth("facebook")}
+                >
                   <FaFacebook className="h-6 w-6" />
                 </Button>
               </div>

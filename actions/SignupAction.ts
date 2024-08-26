@@ -15,7 +15,7 @@ export const SignupAction = async (values: PAuthValidator) => {
     return { error: "Invalid Fields" };
   }
 
-  const { name, email, password } = validatedFields.data;
+  const { name, email, password, level } = validatedFields.data;
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -29,6 +29,7 @@ export const SignupAction = async (values: PAuthValidator) => {
     data: {
       name,
       email,
+      level,
       password: hashedPassword,
     },
   });

@@ -36,3 +36,9 @@ export const LoginAction = async (values: PAuthValidator) => {
     throw error;
   }
 };
+
+export const OAuth = async (provider: "google" | "facebook") => {
+  await signIn(provider, {
+    callbackUrl: "/settings",
+  });
+};

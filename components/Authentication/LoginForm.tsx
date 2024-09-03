@@ -24,7 +24,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 // import logo from "../../public/Images/logo.jpg";
 // import { CircleUserRound } from "lucide-react";
 import { LoginAction, OAuth } from "@/actions/LoginAction";
-import { useState, useTransition } from "react";
+import { useTransition } from "react";
 // import FormSuccess from "./FormSuccess";
 // import FormError from "./FormError";
 import Link from "next/link";
@@ -38,8 +38,8 @@ import { signIn } from "@/auth";
 const LoginForm = () => {
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
-  const [error, setError] = useState<string | undefined>("");
-  const [success, setSuccess] = useState<string | undefined>("");
+  // const [error, setError] = useState<string | undefined>("");
+  // const [success, setSuccess] = useState<string | undefined>("");
 
   const form = useForm<PAuthValidator>({
     resolver: zodResolver(LoginAuthValidator),
@@ -50,8 +50,8 @@ const LoginForm = () => {
   });
 
   function onSubmit(values: PAuthValidator) {
-    setSuccess("");
-    setError("");
+    // setSuccess("");
+    // setError("");
 
     startTransition(() => {
       LoginAction(values).then((data) => {
@@ -61,7 +61,7 @@ const LoginForm = () => {
             description: "There was a problem with your request.",
           });
           // setSuccess(data.success);
-          setError(data.error);
+          // setError(data.error);
         }
       });
     });
@@ -129,26 +129,18 @@ const LoginForm = () => {
                   Login
                 </Button>
               </div>
-              <div className="flex flex-row justify-center items-center gap-x-10">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  onClick={() => OAuth("google")}
-                >
-                  <FcGoogle className="h-6 w-6" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  onClick={() => OAuth("facebook")}
-                >
-                  <FaFacebook className="h-6 w-6" />
-                </Button>
-              </div>
             </div>
           </div>
         </form>
       </Form>
+      <div className="flex flex-row justify-center items-center gap-x-10">
+        <Button size="lg" variant="outline" onClick={() => OAuth("google")}>
+          <FcGoogle className="h-6 w-6" />
+        </Button>
+        <Button size="lg" variant="outline" onClick={() => OAuth("facebook")}>
+          <FaFacebook className="h-6 w-6" />
+        </Button>
+      </div>
       <div className="text-center my-4 flex flex-row justify-between items-center">
         <p className="text-sm">Do Not Have An Account?</p>
         <Link href="/authentication/signup">

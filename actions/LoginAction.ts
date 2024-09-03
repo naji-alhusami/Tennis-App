@@ -39,6 +39,7 @@ export const LoginAction = async (values: PAuthValidator) => {
 
 export const OAuth = async (provider: "google" | "facebook") => {
   await signIn(provider, {
-    callbackUrl: "/settings",
+    // callbackUrl: "/settings",
+    redirectTo: "/settings",
   });
 };

@@ -69,7 +69,7 @@ const SignupForm = () => {
           toast({
             variant: "destructive",
             title: "Something went wrong with your signup.",
-            description: "Email already exists",
+            description: "Email already exi",
           });
           setError(data.error);
         }

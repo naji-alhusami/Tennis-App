@@ -57,8 +57,9 @@ const LoginForm = () => {
       LoginAction(values).then((data) => {
         if (data) {
           toast({
-            title: "Uh oh! Something went wrong.",
-            description: "There was a problem with your request.",
+            variant: "destructive",
+            title: "Something went wrong.",
+            description: "Your Email Or Password is Incorrect!",
           });
           // setSuccess(data.success);
           // setError(data.error);

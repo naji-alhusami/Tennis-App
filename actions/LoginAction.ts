@@ -5,6 +5,7 @@ import {
   PAuthValidator,
 } from "@/app/lib/account-validators";
 import { signIn } from "@/auth";
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { AuthError } from "next-auth";
 
 export const LoginAction = async (values: PAuthValidator) => {
@@ -21,7 +22,7 @@ export const LoginAction = async (values: PAuthValidator) => {
     await signIn("credentials", {
       email,
       password,
-      redirectTo: "/settings",
+      redirectTo: DEFAULT_LOGIN_REDIRECT,
     });
   } catch (error) {
     if (error instanceof AuthError) {

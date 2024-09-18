@@ -76,3 +76,12 @@ model Message {
   senderId String @db.ObjectId
   Sender   User   @relation(fields: [senderId], references: [id], onDelete: Cascade)
 }
+
+model VerificationToken {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}

@@ -7,6 +7,8 @@ import {
   SignupAuthValidator,
 } from "@/app/lib/account-validators";
 import bcrypt from "bcryptjs";
+import { generateVerificationToken } from "@/app/data/tokens";
+import { sendVerificationEmail } from "@/app/lib/mail";
 
 export const SignupAction = async (values: PAuthValidator) => {
   const validatedFields = SignupAuthValidator.safeParse(values);
@@ -34,5 +36,9 @@ export const SignupAction = async (values: PAuthValidator) => {
     },
   });
 
-  return { success: "Email Sent!" };
+  const verificationToken = await generateVerificationToken(email);
+
+  await sendVerificationEmail(verificationToken.email, verificationToken.token);
+
+  return { success: "Confirmation Email sent!" };
 };

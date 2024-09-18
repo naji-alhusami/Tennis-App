@@ -1,5 +1,7 @@
 "use server";
 
+import { generateVerificationToken } from "@/app/data/tokens";
+import { getUserByEmail } from "@/app/data/user";
 import {
   LoginAuthValidator,
   PAuthValidator,
@@ -16,7 +18,20 @@ export const LoginAction = async (values: PAuthValidator) => {
   }
 
   const { email, password } = validatedFields.data;
-  // return { success: "Email Sent!" };
+
+  const existingUser = await getUserByEmail(email);
+
+  if (!existingUser || !existingUser.email || !existingUser.password) {
+    return { error: "Email Does Not Exist" };
+  }
+
+  if (!existingUser.emailVerified) {
+  //   const verificationToken = await generateVerificationToken(
+  //     existingUser.email
+  //   );
+
+    return { error: "Your Email is not Verified!" };
+  }
 
   try {
     await signIn("credentials", {

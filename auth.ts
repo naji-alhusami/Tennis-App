@@ -2,12 +2,13 @@ import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/app/lib/prismadb";
 import authConfig from "@/auth.config";
+import { getUserById } from "./app/data/user";
 // import { getUserById } from "./app/data/user";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   // pages: {
-    // signIn: "/",
-    // error: "/error",
+  // signIn: "/",
+  // error: "/error",
   // },
   events: {
     async linkAccount({ user }) {
@@ -18,18 +19,20 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
   },
   callbacks: {
-    // async signIn({ user }) {
-    //   console.log(user);
-    //   if (user.id) {
-    //     const existingUser = await getUserById(user.id);
+    async signIn({ user, account }) {
+      // console.log(user);
+      if (account?.provider !== "credentials") return true;
 
-    //     if (!existingUser || !existingUser.emailVerified) {
-    //       return false;
-    //     }
-    //   }
+      if (user.id) {
+        const existingUser = await getUserById(user.id);
 
-    //   return true;
-    // },
+        if (!existingUser || !existingUser.emailVerified) {
+          return false;
+        }
+      }
+
+      return true;
+    },
 
     async session({ token, session }) {
       console.log({ sessionToken: token });
